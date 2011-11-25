@@ -30,15 +30,15 @@ def newline
  sleep 0.1
 end
 
-def display(str)
- clear
+def display(str, nextline=true)
+ clear if nextline
  system("/lcd/lcd ^#{str.gsub(/\s+/,'~')}^")
- newline
+ newline if nextline
 end
 
 def user_input
   system('/keypad/alphanumeric')
-   read_user_input
+  read_user_input
 end
 
 

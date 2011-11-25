@@ -1,4 +1,5 @@
-re 'app/user.rb'
+#! /usr/bin/ruby
+require 'app/user.rb'
 require 'app/scan.rb'
 require 'app/send.rb'
 
@@ -8,10 +9,10 @@ scan = scan_files
 if scan == 1
   user = User.new
   response = user.login
-  if response 
-    user = Send.new("#{user.mobile}", "#{user.password}", PATH)
-    user.export
-  end
+    if response
+      user = Send.new("#{user.mobile}", "#{user.password}", PATH)
+      user.export
+    end
 end
 
 

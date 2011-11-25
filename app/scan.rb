@@ -8,7 +8,11 @@ def scan_files
   sleep(2)
   count = `ls -l #{SCANPATH}/ | wc -l`
   if count.to_i == 0 
-    display "Scan and Enter"
+    clear
+    clear
+    display("Put doc to send", false)
+    newline
+    display("and Press Enter", false)
     return 0 
   end                
 	system("mkdir -p #{FILEPATH}")           
