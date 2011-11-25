@@ -13,8 +13,7 @@ class User
   def input_mobile
     display  "Enter Mobile No:"
     mobile = input
-    puts mobile
-    validate_mobile(mobile) ? (@mobile = mobile) : input_mobile
+    validate_mobile(mobile) ? (@mobile = mobile[/\d{10}$/]) : input_mobile
   end
 
   def input_password
@@ -27,21 +26,22 @@ class User
     input_mobile
     input_password
     display  "wait..."
-    puts @password
-    puts @mobile
-    response = `curl -u #{@mobile}:#{@password} #{@url}`
-    puts response.inspect
-    puts "haha"
-    json_response = eval(response.gsub(":"," => "))
-    if json_response['error']
-      display "Login Failed" 
-      sleep(1)
-      login
-    else
-      display "Login Successful"
-      sleep(1)
-      return 1
+    begin
+    	response = `curl -u #{@mobile}:#{@password} #{@url}`
+    	json_response = eval(response.gsub(":"," => "))
+    	if json_response['error']
+      		display "Login Failed" 
+      		sleep(1)
+      		login
+    	else
+      		display "Login Successful"
+      		sleep(2)
+      		return true 
+    	end
+    rescue
+    	display "Error: network unreachable"
+	sleep(2)
+        return false
     end
   end
-
 end
