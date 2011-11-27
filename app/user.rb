@@ -27,7 +27,7 @@ class User
     input_password
     display  "wait..."
     begin
-    	response = `curl -u #{@mobile}:#{@password} #{@url}`
+    	response = `curl -u #{@mobile}:#{@password} --silent #{@url}`
     	json_response = eval(response.gsub(":"," => "))
     	if json_response['error']
       		display "Login Failed" 

@@ -3,8 +3,18 @@ require "lib/api.rb"
 
 SCANPATH="/media/sda1/DCIM/100MEDIA" 
 FILEPATH="/home/root/files"
+PROJECTDIR="/home/root/dakia"
 
 def scan_files
+  eth = `#{PROJECTDIR}/scripts/internet.sh`
+  if eth.to_i == 1 
+    clear
+    clear
+    display("No Network")
+    return 0
+  end
+
+
   sleep(2)
   count = `ls -l #{SCANPATH}/ | wc -l`
   if count.to_i == 0 
@@ -18,7 +28,6 @@ def scan_files
 	system("mkdir -p #{FILEPATH}")           
 	system("rm -rf #{FILEPATH}/*.*")           
 	system("cp #{SCANPATH}/*.JPG #{FILEPATH}/")
-	system("for file in #{FILEPATH}/*.JPG ; do mv $file `echo $file | sed 's/\(.*\.\)JPG/\1jpg/'` ; done")
 	count = `ls -l #{FILEPATH}/ | wc -l`
 	loop = true
         while loop
@@ -28,10 +37,11 @@ def scan_files
           sleep(1)
 	  user_input = input
 	  if user_input.to_i == 1
-		system("rm -rf #{SCANPATH}/*.JPG")
 		display "Page Saved"
+		system("rm -rf #{SCANPATH}/*.JPG")
 		loop = false
           elsif user_input.to_i == 0
+		system("rm -rf #{SCANPATH}/*.JPG")
 		display "Page not saved"
 		sleep(1)
 		display "Send again. BYE!"

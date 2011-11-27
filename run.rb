@@ -12,9 +12,5 @@ if scan == 1
     if response
       user = Send.new("#{user.mobile}", "#{user.password}", PATH)
       user.export
-    end
+    end 
 end
-
-
-
-#  user = Send.new("9711335593", "1112")

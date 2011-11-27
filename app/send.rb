@@ -3,13 +3,9 @@ require "lib/dakia_api.rb"
 require "lib/api.rb"
 
 class Send
-  attr_reader :url
   attr_accessor :path, :scanpath, :receiver_mobile, :sender_mobile, :password, :folder_name, :time
 
   def initialize(sender, password, scanpath) 
-    @url = "http://www.edakia.in/transactions.json"
-    #@url = "http://localhost:3000/transactions.json"
-    
     @path = "/home/root/dakia/files/send/inbox"
     @sender_mobile = sender
     @password = password
