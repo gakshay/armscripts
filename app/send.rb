@@ -38,7 +38,7 @@ class Send
         sleep(1)
 	result = move_scan_files
         if result
-		display "Mail Sent"
+		display "Sending..."
         	return true
 	else
 		return false

@@ -13,8 +13,8 @@ ARCHIVEDIR=$LOCALEXPORTDIR/archive
 
 mkdir -p $INBOX $OUTBOX $LOGDIR $PROCDIR $CONTROLDIR $ERRORDIR $ARCHIVEDIR
 
-TRANSACTIONURL=http://www.edakia.in/transactions.json
-#TRANSACTIONURL=http://10.0.0.6:3000/transactions.json
+#TRANSACTIONURL=http://www.edakia.in/transactions.json
+TRANSACTIONURL=http://10.0.0.4:3000/transactions.json
                                                          
 LOGFILE=`date '+%Y%m%d.log'`
 
